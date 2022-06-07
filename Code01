@@ -1,0 +1,9 @@
+//@version=5
+strategy("FTT-TEST", overlay=true)
+length = input.int(title="Length", minval=1, maxval=1000, defval=5)
+upBound = ta.highest(high, length)
+downBound = ta.lowest(low, length)
+if (not na(close[length]))
+	strategy.entry("FTT-BUY", strategy.long, stop=upBound + syminfo.mintick, comment="FTT-BUY")
+strategy.entry("FTT-SEL", strategy.short, stop=downBound - syminfo.mintick, comment="FTT-SELL")
+
